@@ -2,8 +2,9 @@ h1{
     font-size:22px;
     margin: 10px;
     font-family: sans-serif;
-    color: #aaa;
+    color: rgba(104, 104, 188, 0.815);
     text-align: center;
+    font-weight: 600;
 }
 .container__proveedor{
         margin-top: 40px !important;
@@ -14,6 +15,14 @@ h1{
 
 
     }
+    .tr__title{
+        color: rgb(141, 127, 229);
+        text-align: center;
+        width: 160px !important;
+        font-size: 14px !important;
+        margin-left: 8px !important;
+        
+      }
     .form-control{
         margin-top: 3px;
         border-radius: 6px;
@@ -36,7 +45,7 @@ h1{
         margin: 3px !important;
         margin-left: -0px !important;
     }
-
+    
     .float__button{
         margin-top: 10px;
         background-color: blue;
@@ -48,8 +57,18 @@ h1{
         align-items: center;
         height: 60px;
         border-radius: 100%;
-     
+        animation: floatbutt .1s  linear;
         text-align: center;
+      }
+      @keyframes floatbutt {
+            from{
+                transform: scale(.5);
+                opacity: .4;
+            }
+            to{
+                transform: scale(1);
+                opacity: 1;
+            }
       }
       .float__button:hover{
         background-color: darkblue;

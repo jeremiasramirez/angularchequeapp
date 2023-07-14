@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { VerifiedtokenComponent } from './pages/verifiedtoken/verifiedtoken.component';
 import { LoginComponent } from './pages/login/login.component';
+import { SearchFilterPipe } from './pipes/search-filter.pipe'; 
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { LoginComponent } from './pages/login/login.component';
     ProveedoresComponent,
     SolicitudComponent,
     VerifiedtokenComponent,
-    LoginComponent
+    LoginComponent,
+    SearchFilterPipe
   ],
   imports: [
     BrowserModule,expRoutes,

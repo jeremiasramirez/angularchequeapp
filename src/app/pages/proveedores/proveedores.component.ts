@@ -15,6 +15,12 @@ export class ProveedoresComponent {
   public isAlertAddActive:boolean=false
   public isAlertNotAddActive:boolean=false;
 
+  public isAlertAddUpdateActive:boolean=false
+  public isAlertNotAddUpdateActive:boolean=false;
+  public isAlertRemovedActive:boolean=false;
+
+  public datasearch:string=''
+
   public nombre:string = ''
   public tipo:string = 'Fisico'
   public cedula:string = ''
@@ -22,19 +28,27 @@ export class ProveedoresComponent {
   public cuentaContable:number = 0
   public estado:string = 'A'
   
- 
+  public nombreUpdate:string = ''
+  public idProvUpdate:number=0
+  public tipoUpdate:string = 'Fisico'
+  public cedulaUpdate:string = ''
+  public balanceUpdate:number = 0
+  public cuentaContableUpdate:number = 0
+  public estadoUpdate:string = 'A'
+
 
   public allProveedores:proveedoresI[] = []
   constructor(public proveedoresService:ProveedoresService){
     this.getAllProveedores()
+    
   }
 
-
+  
 
 
   setProveedor(){
  
-    if(this.nombre != '' && this.tipo!= ''&&this.cedula!= '' && this.balance >0  &&  this.cuentaContable >0){
+    if(this.nombre != '' && this.tipo!= ''&&this.cedula.length==10 && this.balance >0  &&  this.cuentaContable >0){
 
      
       
@@ -63,11 +77,51 @@ export class ProveedoresComponent {
       setTimeout(()=>{ this.isAlertNotAddActive=false;},2500)
 
     }
-
-
+ 
 
   }
 
+
+
+  deleteProv(){
+    this.proveedoresService.deleteProveedor(this.idProvUpdate).subscribe((e)=>{
+      this.getAllProveedores()
+      this.isAlertRemovedActive=true
+      setTimeout(()=>{
+        this.isAlertRemovedActive=false
+      },2000)
+    })
+  }
+
+
+  openUpdateProv(prov:any){
+    console.log(prov);
+    
+    this.idProvUpdate=prov.proveedorId
+    this.nombreUpdate=prov.nombre;
+    this.tipoUpdate = prov.tipo;
+    this.cedulaUpdate = prov.cedula;
+    this.balanceUpdate = prov.balance;
+    this.cuentaContableUpdate = prov.cuentaContable;
+    this.estadoUpdate = prov.estado;
+    
+  }
+
+  
+  updateProv(){
+
+    
+    this.proveedoresService.updateProveedor(this.idProvUpdate,this.nombreUpdate,this.tipoUpdate,
+      this.cedulaUpdate,this.balanceUpdate,this.cuentaContableUpdate,this.estadoUpdate).subscribe((e)=>{
+      this.getAllProveedores()
+      this.isAlertAddUpdateActive=true
+      setTimeout(()=>{
+        this.isAlertAddUpdateActive=false
+      },2000)
+    })
+
+
+  }
 
 
 
