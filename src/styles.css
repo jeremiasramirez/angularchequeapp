@@ -1,1 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
+
+.animate{
+    animation: animate .4s ease;
+}
+@keyframes animate {
+    from{
+        opacity: .2;
+    }
+    to{
+        opacity: 1;
+    }
+}
