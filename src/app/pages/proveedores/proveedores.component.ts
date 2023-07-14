@@ -25,7 +25,7 @@ export class ProveedoresComponent {
   public tipo:string = 'Fisico'
   public cedula:string = ''
   public balance:number = 0
-  public cuentaContable:number = 0
+  public cuentaContable:number = Number(String((Math.random() * 100 + 390)).substring(4,12))
   public estado:string = 'A'
   
   public nombreUpdate:string = ''
@@ -95,8 +95,8 @@ export class ProveedoresComponent {
 
 
   openUpdateProv(prov:any){
-    console.log(prov);
     
+    // transfiriendo datos actuales al modal actualizador de datos
     this.idProvUpdate=prov.proveedorId
     this.nombreUpdate=prov.nombre;
     this.tipoUpdate = prov.tipo;

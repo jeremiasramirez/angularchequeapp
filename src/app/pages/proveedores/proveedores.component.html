@@ -33,7 +33,7 @@
             <tbody>
                 
            
-              <tr   class="table__tr__proveeedor" *ngFor="let prov of allProveedores | searchFilter:datasearch" 
+              <tr   class="table__tr__proveeedor" *ngFor="let prov of allProveedores| searchFilter:datasearch " 
               style="cursor: pointer; text-align: center !important;" 
               (click)="openUpdateProv(prov)" data-bs-toggle="modal" data-bs-target="#exampleModalUpdate">
               
@@ -100,10 +100,10 @@
           </div>
 
 
-          <div class="mb-2"  >
+          <!-- <div class="mb-2"  >
             <label for="recipient-name" class="col-form-label" style="margin-left: 50px !important;">Cuenta contable</label>
             <input [(ngModel)]="cuentaContable"  [ngModelOptions]="{standalone: true}"  class="form-control form-control-sm" type="number" style="margin-left: 50px !important;" placeholder="CUENTA CONTABLE" >
-          </div>
+          </div> -->
 
   
         </form>
