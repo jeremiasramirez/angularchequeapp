@@ -29,6 +29,13 @@ export class ProveedoresService{
     byid(id:number){
         return ajax.get(`https://localhost:7279/proveedores/byid?id_proveedor=${id}`)
     }
+
+    bycedula(cedula:string){
+        return ajax.get(`https://localhost:7279/proveedores/bycedula?cedula=${cedula}`)
+    }
+
+
+    
     
 } 
 

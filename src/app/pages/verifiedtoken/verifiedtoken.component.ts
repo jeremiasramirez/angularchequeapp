@@ -7,10 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./verifiedtoken.component.css']
 })
 export class VerifiedtokenComponent {
-
+  token:any = null
   constructor(public router_ :Router){
     setTimeout(()=>{
-      this.router_.navigate(['/home'])
+      
+        this.token= localStorage.getItem("token");
+      
     },2000)
   }
 }

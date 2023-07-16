@@ -11,7 +11,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { VerifiedtokenComponent } from './pages/verifiedtoken/verifiedtoken.component';
 import { LoginComponent } from './pages/login/login.component';
-import { SearchFilterPipe } from './pipes/search-filter.pipe'; 
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
+import { SearchSolicPipe } from './pipes/search-solic.pipe'; 
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SearchFilterPipe } from './pipes/search-filter.pipe';
     SolicitudComponent,
     VerifiedtokenComponent,
     LoginComponent,
-    SearchFilterPipe
+    SearchFilterPipe,
+    SearchSolicPipe
   ],
   imports: [
     BrowserModule,expRoutes,

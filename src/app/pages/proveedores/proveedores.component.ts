@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { timer } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { proveedoresI } from 'src/app/interfaces/proveedoresI';
 import { ProveedoresService } from 'src/app/services/proveedores.service';
@@ -14,6 +15,7 @@ import { ProveedoresService } from 'src/app/services/proveedores.service';
 export class ProveedoresComponent {
   public isAlertAddActive:boolean=false
   public isAlertNotAddActive:boolean=false;
+  public isLoadCards:boolean=false
 
   public isAlertAddUpdateActive:boolean=false
   public isAlertNotAddUpdateActive:boolean=false;
@@ -48,7 +50,7 @@ export class ProveedoresComponent {
 
   setProveedor(){
  
-    if(this.nombre != '' && this.tipo!= ''&&this.cedula.length==10 && this.balance >0  &&  this.cuentaContable >0){
+    if(this.nombre != '' && this.tipo!= ''&&this.cedula.length==11 && this.balance >0  &&  this.cuentaContable >0){
 
      
       
@@ -131,7 +133,8 @@ export class ProveedoresComponent {
       
       e.json().then((e)=>{
         this.allProveedores=e
-        
+        this.isLoadCards=true
+        timer(200).subscribe(()=>this.isLoadCards=false)
 
       })
       

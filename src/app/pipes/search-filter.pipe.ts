@@ -8,7 +8,8 @@ export class SearchFilterPipe implements PipeTransform {
 
   transform(value:proveedoresI[], search: string) {
      
-    return value.filter((element)=>element.cedula.includes(search) || element.nombre.toLowerCase().includes(search));
+    return (search.length>0)==true? value.filter((element)=>element.cedula.includes(search.trim()) || element.nombre.toLowerCase().includes(search.trim())) : value;
+    
   }
 
 }

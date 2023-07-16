@@ -11,8 +11,8 @@ export class SolicitudService{
         return ajax.get('https://localhost:7279/solicitudes/all')
     }
 
-    setSolicitud( ){
-        return ajax.post(` `)
+    setSolicitud( numeroSolicitud:number,fechaRegistro:string, estado:string, proveedorId:number, cContableProveedor :string,  monto:number, nombreProveedor:string){ // 
+        return ajax.post(`https://localhost:7279/solicitudes/nuevo?numeroSolicitud=${numeroSolicitud}&fechaRegistro=${fechaRegistro}&estado=${estado}&proveedorId=${proveedorId}&cContableProveedor=${cContableProveedor}&monto=${monto}&nombreProveedor=${nombreProveedor}`)
         
     }
 } 

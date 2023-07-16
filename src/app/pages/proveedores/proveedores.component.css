@@ -60,6 +60,20 @@ h1{
         animation: floatbutt .1s  linear;
         text-align: center;
       }
+      .float__buttonred{
+        margin-top: 10px;
+        background-color: rgb(255, 0, 81);
+        width: 60px;
+        cursor: pointer;
+        margin-left: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        border-radius: 100%;
+        animation: floatbutt .1s  linear;
+        text-align: center;
+      }
       @keyframes floatbutt {
             from{
                 transform: scale(.5);

@@ -9,8 +9,8 @@ export class AppComponent {
   title = 'appcheques';
   token:any = null
   constructor(){
-    setTimeout(()=>{
+   
       this.token= localStorage.getItem("token");
-    },2000)
+  
   }
 }

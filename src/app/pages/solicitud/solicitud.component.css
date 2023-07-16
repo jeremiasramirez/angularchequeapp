@@ -1,0 +1,67 @@
+ .container__cards{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+ }
+.card__solicitud{
+    width: 335px;
+ 
+    height: 198px;
+    background-color: white;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px #ddd;
+  }
+  .card__title{
+    background-color: rgba(0, 0, 255, 0.646);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top-left-radius: 5px;
+    padding-top: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-top-right-radius: 5px;
+    color: white;
+    height: 30px;
+    font-family: sans-serif;
+    font-weight: 500;
+  }
+
+  .content__card__solicitud{
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    justify-content: space-between;
+    padding-top: 10px;
+    padding-left: 7px;
+    padding-right: 7px;
+    align-items: center;
+    height: 40px;
+ 
+  }
+  .content__card__solicitud__title{
+    font-weight: 500;
+  }
+
+  .content__card__solicitud__value{
+    font-size: 15px;
+  }
+
+  .renewSolic img{
+    width: 20px;
+  }
+
+  .gap-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .gap-1 button{
+    padding:  0 10px 0 10px;
+    padding: 4px;
+    width: 300px;
+   
+  }

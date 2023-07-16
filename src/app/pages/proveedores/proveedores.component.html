@@ -1,18 +1,26 @@
 <div class="alert alert-danger animate" role="alert" *ngIf="isAlertRemovedActive">
   Proveedor eliminado correctamente!
 </div>
-<h1 class="animate">Gestion de proveedores</h1>
-
 
 <div class="float__button" data-bs-toggle="modal" data-bs-target="#exampleModal">
   <img src="../../../assets/baseline_add_white_24dp.png" alt="add button">
 </div>
+
+<h1 class="animate">Gestion de proveedores</h1>
+
+
+
  
  <div class="search__proveedores animate">
     <input #searchProv   [(ngModel)]="datasearch"  type="search" placeholder="Buscar proveedor">
  </div>
-
-<section class="container__proveedor animate">
+ <br>
+ <div class="d-flex justify-content-center animate" *ngIf="isLoadCards==true">
+   <div class="spinner-border text-primary" role="status">
+     <span class="visually-hidden">Loading...</span>
+   </div>
+ </div>
+<section class="container__proveedor animate" *ngIf="!isLoadCards">
   
       
     <article class="add__proveedor">
@@ -33,14 +41,14 @@
             <tbody>
                 
            
-              <tr   class="table__tr__proveeedor" *ngFor="let prov of allProveedores| searchFilter:datasearch " 
+              <tr   class="table__tr__proveeedor animate" *ngFor="let prov of allProveedores| searchFilter:datasearch " 
               style="cursor: pointer; text-align: center !important;" 
               (click)="openUpdateProv(prov)" data-bs-toggle="modal" data-bs-target="#exampleModalUpdate">
               
                 <td>{{ prov.nombre }}</td>
                 <td>{{ prov.tipo }}</td>
                 <td>{{ prov.cedula }}</td>
-                <td>{{ prov.balance }}</td>
+                <td>{{ prov.balance | number }}</td>
                 <td>{{ prov.cuentaContable }}</td>
                 <td>{{ prov.estado == "A"? "Activo":"Inactivo"}}</td>
                 
@@ -206,7 +214,7 @@
 
         <div class="btn-group " role="group" aria-label="Basic mixed styles example">
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" >Cerrar</button>
-          <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteProv()" >Eliminar</button>
+          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModalAlertDelete"  >Eliminar</button>
           <button type="button" class="btn btn-primary" (click)="updateProv()">Actualizar</button>
         </div>
       </div>
@@ -221,5 +229,25 @@
       </style>
       <br>
     </div> 
+  </div>
+</div>
+
+
+<!-- delete alert modal -->
+<div class="modal animate" tabindex="-1" id="exampleModalAlertDelete">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Eliminar</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p> ¿Realmente deseas eliminar este proveedor?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteProv()">Eliminar</button>
+      </div>
+    </div>
   </div>
 </div>
