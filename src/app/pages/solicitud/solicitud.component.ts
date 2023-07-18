@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { pluck, timer } from 'rxjs';
+import { interval, pluck, timer } from 'rxjs';
 import { proveedoresI } from 'src/app/interfaces/proveedoresI';
 import { solicitudesI } from 'src/app/interfaces/solicitudesI';
 import { ProveedoresService } from 'src/app/services/proveedores.service';
@@ -21,6 +21,7 @@ export class SolicitudComponent {
   public allProveedores:proveedoresI[] = []
   public allSolicitudes:any = []
 
+  public progressValue:number=0;
   public datasearch:string = ''
   public dataUpdate:solicitudesI 
   public dataNew:any
@@ -28,6 +29,7 @@ export class SolicitudComponent {
   public cedulaVerified:string=''
   public proveedorByCedulaFinded:proveedoresI[]=[]
   public isProveedorFindedByCedula:boolean=false;
+  public isProveedorFindedByCedulaLoad:boolean=false;
   public newMountForNewSolic:number=0
 
   constructor(public provService:ProveedoresService, public solicService:SolicitudService){
@@ -105,15 +107,29 @@ export class SolicitudComponent {
 
 
   verifiedProveedor(){
+    this.progressValue=0
     if(this.cedulaVerified.trim()){
       if(this.cedulaVerified){
-  
+        
       this.proveedorByCedulaFinded=[]
       this.provService.bycedula(this.cedulaVerified).subscribe((e:any)=>{
       
         this.proveedorByCedulaFinded=e.response
 
           if(this.proveedorByCedulaFinded[0]!=null){
+            this.isProveedorFindedByCedulaLoad=true;
+            timer(1000).subscribe(()=>this.isProveedorFindedByCedulaLoad=false)
+
+            const x =interval(10).subscribe(()=>{
+              this.progressValue+=1
+              if(this.progressValue==100){
+           
+                x.unsubscribe()
+             
+              }
+            })
+          
+            
             this.dataNew.numeroSolicitud=this.generateNewNumSolicitud()
           // this.dataNew.fechaRegistro = automatic
           // this.dataNew.estado = automatic 
