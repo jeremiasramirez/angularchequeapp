@@ -12,7 +12,7 @@
 
  
 <div class="search__proveedores animate">
-  <input  type="search" placeholder="Cedula del proveedor" [(ngModel)]="datasearch">
+  <input  type="search" placeholder="Buscar por nombre proveedor" [(ngModel)]="datasearch">
 </div>
 
 <br>
@@ -193,19 +193,18 @@
       </div>
       <div class="modal-body ">
 
-        <!-- <div class="alert alert-primary animate" role="alert" *ngIf="isAlertAddUpdateActive">
-          Proveedor actualizado exitosamente!
-        </div>
+        <div class="alert alert-danger animate" role="alert" *ngIf="doit==true">
+          Ya se ha generado un cheque con esta solicitud y ya no se puede editar.
+        </div> 
 
 
-        <div class="alert alert-danger animate" role="alert" *ngIf="isAlertNotAddUpdateActive">
-          Rellene todos los campos correctamente
-        </div> -->
+      
 
         <form  >
-          <div class="alert alert-primary animate" role="alert"  >
+          <!-- <div class="alert alert-primary animate" role="alert"  >
             Se ha agregado un proveedor exitosamente!
-          </div>
+          </div> -->
+
           <div class="mb-2" style="width: 280px !important;">
             <label for="recipient-name" class="col-form-label" style="margin-left: 50px !important;">Nombre proveedor</label>
             <input  class="form-control form-control-sm" name="nombre" type="text" disabled [value]="dataUpdate.proveedorNombre"  style="margin-left: 50px !important;">
@@ -219,12 +218,13 @@
            
           <div class="mb-2">
             <label for="recipient-name" class="col-form-label" style="margin-left: 50px !important;">Tipo</label>
-            {{dataUpdate.estado}}
+       
           <select  [(ngModel)]="dataUpdate.estado"  class="form-select form-control form-select-sm mb-3"  style="margin-left: 50px !important;" [ngModelOptions]="{standalone: true}"> 
             <option value="P">Pendiente</option>
             <option value="A"  >Anular</option> 
             <option value="G"  selected>Generar cheque</option> 
           </select>
+    
         </div>
           <!-- [ngModelOptions]="{standalone: true}"  -->
           
@@ -237,7 +237,7 @@
        
 
         <div class="d-grid gap-1">
-          <button type="button" class="btn btn-primary"  >Actualizar</button>
+          <button type="button" class="btn btn-primary" (click)="updateSolicitud()" data-bs-dismiss="modal"  [disabled]="doit==true">Actualizar</button>
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" >Cerrar</button>
         </div>
       </div>

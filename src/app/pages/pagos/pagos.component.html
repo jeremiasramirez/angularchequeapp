@@ -1,17 +1,46 @@
 
 
+<h1 class="animate title__proveedor">Pagos</h1>
+<div class="alert alert-success" role="alert" *ngIf="isalerton">
+  Asientos enviados
+</div>
 
-<ul class="nav nav-underline">
-    <li class="nav-item">
-      <a class="nav-link active" aria-current="page" href="#">Active</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="#">Link</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link disabled">Disabled</a>
-    </li>
-  </ul>
+<div class="data__pays animate">
+
+  <table class="table animate">
+    <thead>
+      <tr class="table-active">
+        <th scope="col">Nombre provedor</th>
+        <th scope="col">Cuenta contable</th>
+        <th scope="col">Fecha</th>
+        <th scope="col">Monto</th>
+        <th scope="col">Asiento</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pay of allPays" class="tr">
+        <th scope="row">{{pay.nombreProveedor}}</th>
+        <td>{{pay.cuentaContable}}</td>
+        <td>{{pay.fecha}}</td>
+        <td>{{pay.monto}}</td>
+        <td><button type="button" class="btn btn-primary btn-sm" (click)="getResumen(pay,allPays)">Enviar asiento</button></td>
+      </tr>
+     
+    </tbody>
+  </table>
+</div>
+<style>
+  .data__pays{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
+  .table{
+    border-radius: 6px;
+    max-width: 800px;
+  }
+   .tr:hover {
+    cursor: pointer; 
+   }
+</style>

@@ -21,6 +21,7 @@ export class SolicitudComponent {
   public allProveedores:proveedoresI[] = []
   public allSolicitudes:any = []
 
+  public doit:boolean=false;
   public progressValue:number=0;
   public datasearch:string = ''
   public dataUpdate:solicitudesI 
@@ -51,7 +52,7 @@ export class SolicitudComponent {
     this.dataNew={
       cContableProveedor:0,
       estado:'P' ,
-      fechaRegistro:new Date().toDateString(),
+      fechaRegistro: `${new Date().getDate()}/${new Date().getMonth()}/${new Date().getFullYear()}`,
       id:0,
       monto:0,
       numeroSolicitud:0,
@@ -69,7 +70,7 @@ export class SolicitudComponent {
       
       //  console.log(e.response);
        this.allSolicitudes=e.response
-       timer(200).subscribe(()=>this.isLoadCards=false)
+       timer(100).subscribe(()=>this.isLoadCards=false)
        
       
     })
@@ -161,6 +162,20 @@ export class SolicitudComponent {
 
 
 
+  updateSolicitud(){
+   // updateSolicitud(id:number,monto:number,  estado:string){ // 
+    this.solicService.updateSolicitud(this.dataUpdate.id,this.dataUpdate.monto,this.dataUpdate.estado)
+      .subscribe(()=>{
+        if(this.dataUpdate.estado=='G'){
+          this.solicService.newPay(this.dataUpdate.proveedorNombre,this.dataUpdate.cContableProveedor,this.dataUpdate.fechaRegistro,this.dataUpdate.monto)
+          .subscribe(()=>{
+            console.log({ok:true});
+            
+          })
+        }
+        this.getAllSolicitudes();
+      })
+  } 
 
 
  
@@ -193,6 +208,9 @@ export class SolicitudComponent {
     this.dataUpdate.fechaRegistro=solic.fechaRegistro,
     this.dataUpdate.proveedorId=solic.proveedorId
     this.dataUpdate.numeroSolicitud=solic.numeroSolicitud
+    this.dataUpdate.cContableProveedor=solic.cContableProveedor
+    if(solic.estado=='G'){this.doit=true}
+    
   }
    generateNewNumSolicitud(){
     let numSolicitud:string = String(Math.random() * 100 + 390).substring(5,12)
